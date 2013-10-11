@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+  <title>AppPadel</title>
+
+  <meta charset="utf-8">
+  <meta name="description" content="Inscripción y seguimiento de eventos padel">
+  <meta name="keywords" content="skootik S.L., AppPadel, eventos">
+  <meta name="author" content="Unai Martinez de Lizarduy">
+  <meta name="viewport" content="width=device-width" />
+
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <link href="css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+  <link href="css/styles.css" rel="stylesheet" type="text/css" />
+  <link href="css/media-queries.css" rel="stylesheet" type="text/css" />
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  
+  <script src="js/jquery-1.9.1.min.js"></script>
+  <script src="js/jquery.validate.js"></script>
+  <script src="js/formulario.js"></script>
+</head>
+
+<body data-spy="scroll">
+  <!-- TOP MENU NAVIGATION -->
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+
+        <a class="brand pull-left" href="#">
+          <img src="img/icon.png">
+        </a>
+
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+
+        <div class="nav-collapse collapse">
+          <ul id="nav-list" class="nav pull-right">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="registro.html">Registro</a></li>
+            <li><a href="info.html">Info</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container content container-fluid" id="home">
+    <div class="row-fluid">  
+      <div class="span12">
+       <div class="hero-unit">
+        <h3>Registro</h3>
+          <p>Con este sencillo formulario de registro ya podrás a empezar a recibir notificaciones cada vez que se abra el plazo de inscripción de torneos de pádel en el radio de alcance que tu consideres.
+          </p>
+          <section id="contenedor">
+           <form id="formulario" autocomplete="off">
+            <div class="control-group">
+              <div class="controls">
+               <input type="text" name="txtNombre" placeholder="Nombre">
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="controls">
+                <input type="text" name="txtEmail" placeholder="Email">
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="controls">
+                <input type="text" id="telefono" name="telefono" placeholder="Teléfono">
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="controls">
+                <input type="password" id="txtPassword" name="txtPassword" placeholder="Password">
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="controls">
+                <button type="submit" class="btn btn-large btn-warning">Enviar</button>
+                <a href="index.html" class="btn btn-large">Volver</a>
+              </div>
+            </div>
+          </form> 
+        </section>
+        <section id="respuesta"></section>
+      </div>         
+    </div>
+  </div>
+</div>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-collapse.js"></script>
+<script src="js/bootstrap-scrollspy.js"></script>
+<script src="js/init.js"></script>
+</body>
+</html>

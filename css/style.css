@@ -1,0 +1,24 @@
+/*
+Autor: Juan Carlos Rivera Poccomo
+Web: http://starkcode.blogspot.com
+*/
+ 
+/* # cambiar estilo a error
+============================================*/
+.controls > .error {
+    color: #b94a48;
+    display: inline-block;
+    *display: inline;
+    padding-left: 5px;
+    vertical-align: middle;
+    *zoom: 1;
+}
+/* # estilo de pagina
+============================================*/
+.container  {
+    width: 650px;
+    margin: auto;
+}
+h2 {
+    text-align: center;
+}
