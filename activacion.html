@@ -19,9 +19,49 @@
   <link href="css/media-queries.css" rel="stylesheet" type="text/css" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   
-  <script src="js/jquery-1.9.1.min.js"></script>
-  <script src="js/jquery.validate.js"></script>
-  <script src="js/formulario.js"></script>
+
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <!-- Elección del rango y escritura en la memoria local -->
+  <script type="text/javascript">
+  $(function() {
+   $('#rango').on('click', function() {
+    var km = $('#km').val();
+    localStorage.setItem("rango", km);
+    alert(localStorage.getItem('rango')); 
+  });
+ });
+  </script>
+<script type="text/javascript">
+$(document).ready(function() {
+    function temporizador(){
+        //var dataString = 'value='+value;
+        $.ajax({
+            // data: dataString,
+            type: 'POST',
+            dataType: 'json',
+            //url: "../apppadelphp/comprobacion.php",
+            url: 'http://skootik.com/phonegap/padel/comprobacion.php',
+            success: function(datos) {
+              if (datos!='') {
+                    $('#respuesta').html(datos).fadeIn('slow');
+                    var rango = localStorage.getItem('rango');
+                    if (datos<=rango) {
+var d = new Date();
+var mes = d.getMonth() + 1;
+var fecha = (d.getFullYear() + '-' + mes + '-' + d.getDate());
+
+                      alert(fecha);
+                    }
+                  }
+            }
+        });
+    }
+
+    setInterval(temporizador, 3000);
+});
+</script>
+
 </head>
 
 <body data-spy="scroll">
@@ -53,31 +93,33 @@
       <div class="span12">
        <div class="hero-unit">
         <h3>Radio de alcance</h3>
-          <p>Con la elección del radio de alcance podrás filtrar sólo aquellos eventos generados para la zona geográfica delimitada.
-          </p>
-          <section id="contenedor">
-            <form id="formulario" autocomplete="off">
+        <p>Con la elección del radio de alcance podrás filtrar sólo aquellos eventos generados para la zona geográfica delimitada.
+        </p>
+        <section id="contenedor">
+          <form id="formulario" autocomplete="off">
             <div class="control-group">
-              
 
-<div class="controls docs-input-sizes">
-              <select class="span3">
-                <option value="25">25 Km</option>
-                <option value="50">50 Km</option>
-                <option value="100">100 Km</option>
-                <option value="200">200 Km</option>
-                <option value="300">300 Km</option>
-              </select>
-            </div>
+
+              <div class="controls docs-input-sizes">
+                <select id="km" name="km" class="span3">
+                  <option value="25">25 Km</option>
+                  <option value="50">50 Km</option>
+                  <option value="100">100 Km</option>
+                  <option value="200">200 Km</option>
+                  <option value="300">300 Km</option>
+                </select>
+              </div>
             </div>
             <div class="control-group">
               <div class="controls">
-            <button type="submit" class="btn btn-primary">Radio de alcance</button>
+                <button id="rango" type="submit" class="btn btn-large btn-warning">Radio de alcance</button>
               </div>
             </div>
           </form> 
         </section>
-        <section id="respuesta"></section>
+        <section id="contenedor">
+         <h1><section id="respuesta"></section></h1>
+        </section>
       </div>         
     </div>
   </div>

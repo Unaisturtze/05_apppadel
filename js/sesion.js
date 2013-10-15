@@ -9,21 +9,10 @@ $(document).ready(function(){
 	$('#formulario').validate({
 		errorElement: "span",
 		rules: {
-			txtNombre: {
-				minlength: 2,
-				maxlength: 30,
-				required: true
-			},
 			txtEmail: {
 				maxlength: 50,
 				required: true,
 				email: true
-			},
-			telefono: {
-				minlength: 9,
-				maxlength: 16,
-				required: true,
-				digits: true
 			},
 			txtPassword: {
 				minlength: 6,
@@ -46,34 +35,37 @@ $(document).ready(function(){
 	$('#formulario').submit(function(evento){
 		if (validacion) {
 			$('#respuesta').hide(); 
-			$('#respuesta').html('<span class="label label-success"> <i class="icon-refresh"></i> Procesando registro ... </span>').fadeIn('slow');
+			$('#respuesta').html('<span class="label label-success"> <i class="icon-refresh"></i> Procesando sesión ... </span>').fadeIn('slow');
 			evento.preventDefault();    
 			var info = $(this).serialize();
 			var sesion = info.substring(14);
-			var nombre = $("input#txtNombre").val();
 			var email = $("input#txtEmail").val();
-			var telefono = $("input#telefono").val();
 			var password = $("input#txtPassword").val();
 			
-			localStorage.setItem("nombre", nombre);	
 			localStorage.setItem("email", email);	
-			localStorage.setItem("telefono", telefono);	
 			localStorage.setItem("password", password);	
-            localStorage.setItem("flag", "usuario_registrado");	
-            sessionStorage.hits = sesion;
+			localStorage.setItem("flag", "usuario_registrado");	
+			sessionStorage.hits = sesion;
 			$.ajax({
-				//url: '../apppadelphp/registro.php',
-				url: 'http://skootik.com/phonegap/padel/registro.php',
+				//url: '../apppadelphp/sesion.php',
+				url: 'http://skootik.com/phonegap/padel/sesion.php',
                  data: info,
                  type: 'POST',
                  dataType: 'json',
                  success: function(datos){
-                 	if (datos=='ok') {
-                 		$('#respuesta').html("<span class='label label-success'> <i class='icon-ok'></i> Registro correcto. </span>").fadeIn('slow');
+                 	if (datos!='ko') {
+                 		$('#respuesta').html("<span class='label label-success'> <i class='icon-ok'></i> Sesión correcta. </span>").fadeIn('slow');
+                 		$.each(datos, function(i, v) {	
+ 						if (i=='usuario') {
+ 						localStorage.setItem("nombre", v); }
+ 						else {	
+						localStorage.setItem("telefono", v);
+						}	
+						});
                  		window.location="activacion.html";
                  	}
 					if (datos=='ko') {
-                 		$('#respuesta').html("<span class='label label-important'> <i class='icon-remove'></i> El email ya está registrado. </span>").fadeIn('slow');
+                 		$('#respuesta').html("<span class='label label-important'> <i class='icon-remove'></i> Los datos no son correctos. </span>").fadeIn('slow');
                  	}
 
                  }
